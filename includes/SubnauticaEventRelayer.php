@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks;
+namespace MediaWiki\Extension\SubnauticaTweaks;
 
 use EventRelayer;
 
@@ -9,7 +9,7 @@ use EventRelayer;
  * Note: This performs purges directly, so if purging fails for any reason, the purges are lost.
  *
  */
-class GloopEventRelayer extends EventRelayer {
+class SubnauticaEventRelayer extends EventRelayer {
 	// Cloudflare limits purge_cache API to 30 URLs per request.
 	private const MAX_URLS_PER_REQUEST = 30;
 
@@ -44,7 +44,7 @@ class GloopEventRelayer extends EventRelayer {
 	* @param string[] $urls Array of URLs to purge.
 	*/
 	private static function CloudflarePurge( array $urls ) {
-		global $wgGloopTweaksCFToken, $wgGloopTweaksCFZone;
+		global $wgSubnauticaTweaksCFToken, $wgSubnauticaTweaksCFZone;
 
 		// Break the purge requests into chunks sized to Cloudflare's per-request URL limit.
 		$chunks = array_chunk( $urls, self::MAX_URLS_PER_REQUEST );
@@ -53,13 +53,13 @@ class GloopEventRelayer extends EventRelayer {
 		$ch = curl_init();
 		curl_setopt( $ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS );
 		curl_setopt( $ch, CURLOPT_HTTPHEADER, [
-			'Authorization: Bearer ' . $wgGloopTweaksCFToken,
+			'Authorization: Bearer ' . $wgSubnauticaTweaksCFToken,
 			'Content-Type: application/json',
 		] );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
 		curl_setopt( $ch, CURLOPT_TIMEOUT, 10 );
-		curl_setopt( $ch, CURLOPT_URL, 'https://api.cloudflare.com/client/v4/zones/' . $wgGloopTweaksCFZone . '/purge_cache' );
+		curl_setopt( $ch, CURLOPT_URL, 'https://api.cloudflare.com/client/v4/zones/' . $wgSubnauticaTweaksCFZone . '/purge_cache' );
 
 		// Perform the purge requests a chunk at a time.
 		foreach ( $chunks as $chunk ) {

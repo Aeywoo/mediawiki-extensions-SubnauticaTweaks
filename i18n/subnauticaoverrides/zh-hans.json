@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dianliang233",
+			"NekoCharm (MysticNebula70)"
+		]
+	},
+	"subnautica-privacypage": "wg:privacy",
+	"subnautica-changecontentmodel-text": "本页面可以让您更改wiki页面的内容模型。注意：除了极特殊情况，这个操作几乎都没有必要。更改页面的内容模型可能会破坏它的功能。若您不确定您在做什么，请[[Special:Contact|联系]]系统管理员（只接受英文请求）。",
+	"subnautica-emailmessage": "消息：",
+	"subnautica-mobile-frontend-copyright": "本网站内容采用$1授权，<a href=\"https://meta.subnautica.wiki/w/Project:Copyrights\">附加条款亦可能应用</a>。\n\n",
+	"subnautica-contactpage-pagetext": "下面的表单可以用来联系Subnautica，您正在访问的wiki的运营者。若您对wiki本身有任何问题，更好的方法是联系一位编辑者或管理员。'''如果您需要提交DMCA下架请求，请使用[[Special:Contact/dmca|这个表单]]。'''",
+	"subnautica-newusermessage-editor": "新用户消息",
+	"subnautica-revisionslider-help-dialog-slide1": "修订滑块帮助您在差异页面上导航并比较修订版本。若您有任何问题，请向我们反馈！"
+}

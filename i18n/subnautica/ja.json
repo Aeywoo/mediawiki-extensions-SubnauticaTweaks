@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Müller857"
+		]
+	},
+	"subnauticatweaks-desc": "Subnauticaのネットワーク上のすべてのWikiに影響を与える追加機能を提供します。",
+	"subnautica-copyright": "このサイト上のコンテンツは$1でライセンスされています。<a href=\"https://meta.subnautica.wiki/w/Project:Copyrights\">追加の規約が適用される場合があります</a>。\n\n",
+	"subnautica-upload-nolicenses": "このWikiへのファイルのアップロードは有効化されていません。\n\nこのページを使ってこのWikiへアップロードが出来るようになるためには、管理者が一つ以上のライセンスの選択肢を[[MediaWiki:Licenses]]に追加する必要があります。\n\n<code>* テンプレート名|ラベル</code>の形式を使用してください。ライセンスの選択肢を設定せずにアップロードを有効化するには、任意のテキストを入力してください。",
+	"subnautica-globalblocking-ipblocked": "'''あなたのIPアドレスはすべてのWikiでブロックされています。'''\n\nこのブロックは$1 ($2)により行われたものです。\nブロックの理由は''$3''です。\n\n* ブロック期間開始: $4\n* ブロック期間終了: $5\n\n現在ご使用のIPアドレスは$6です。\n要求を送信する場合には上記すべての詳細情報を必ず添えてください。\n\n誤ってブロックされている場合は、[[Special:Contact]]から管理者に問い合わせできます（英語のみ受付）。",
+	"subnautica-globalblocking-ipblocked-xff": "'''リクエストに使用されているプロキシサーバーの中に、すべてのWikiでブロックされているものがあります。'''\n\nこのブロックは$1 ($2)により行われたものです。\nブロックの理由は''$3''です。\n\n* ブロック期間開始: $4\n* ブロック期間終了: $5\n\nブロックされたプロキシのIPアドレスは$6です。\n要求を送信する場合には上記すべての詳細情報を必ず添えてください。\n\n誤ってブロックされている場合は、[[Special:Contact]]から管理者に問い合わせできます（英語のみ受付）。",
+	"subnautica-tou": "利用規約",
+	"subnautica-tou-url": "snmeta:terms",
+	"subnautica-contact": "Subnauticaに問い合わせ",
+	"subnautica-contact-url": "Special:Contact",
+	"subnautica-siteinterface": "あなたはグローバルインターフェースページでこの操作を行うことができません。このページの編集が必要な場合、及び手助けが必要な場合は[[Special:Contact|システム管理者に問い合わせ]]てください。",
+	"subnautica-spam-block": "対スパム特別基準に抵触したため、この操作はブロックされました。エラーだと思う場合は、[https://discord.gg/mEfZeCBG Discordでお問い合わせください]。",
+	"right-staff": "SubnauticaのホストするWikiでの管理ツールへのアクセス",
+	"right-editinterfacesite": "グローバルインターフェースの編集",
+	"right-bypasssubnauticaspam": "Subnauticaの実装しているスパム対策基準を回避",
+	"group-staff": "スタッフ",
+	"group-staff-member": "{{GENDER:$1|システム管理者}}",
+	"grouppage-staff": "{{ns:project}}:スタッフ",
+	"group-jagex": "Jagex",
+	"right-jagex": "認証済みJagex Ltdの社員",
+	"nstab-minecraft_dungeons": "Minecraft Dungeons",
+	"nstab-minecraft_earth": "Minecraft Earth",
+	"nstab-minecraft_story_mode": "Minecraft Story Mode",
+	"nstab-minecraft_legends": "Minecraft Legends",
+	"nstab-dungeons": "Dungeons",
+	"nstab-earth": "Earth",
+	"nstab-story_mode": "Story Mode",
+	"nstab-legends": "Legends",
+	"querypage-updates-daily": "このページの更新は1日毎に行われます。"
+}

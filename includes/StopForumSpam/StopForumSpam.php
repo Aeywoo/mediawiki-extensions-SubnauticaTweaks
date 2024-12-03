@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks\StopForumSpam;
+namespace MediaWiki\Extension\SubnauticaTweaks\StopForumSpam;
 
 class StopForumSpam {
 	/**
@@ -26,23 +26,23 @@ class StopForumSpam {
 
 		if (!$resultJson || $resultJson['success'] < 1) {
 			// Unsuccessful API call, so we'll just log and return false.
-			wfDebugLog( 'GloopTweaks', "Unsuccessful StopForumSpam API call for IP {$ip}" );
+			wfDebugLog( 'SubnauticaTweaks', "Unsuccessful StopForumSpam API call for IP {$ip}" );
 			return false;
 		}
 
 		if ($resultJson['ip']['appears'] > 0 && $resultJson['ip']['confidence'] > 10.0) {
 			// IP appears in the SFS database.
-			wfDebugLog( 'GloopTweaks', "{$ip} appears in StopForumSpam database" );
+			wfDebugLog( 'SubnauticaTweaks', "{$ip} appears in StopForumSpam database" );
 			return true;
 		}
 		if ($email && $resultJson['email']['appears'] > 0 && $resultJson['email']['confidence'] > 10.0) {
 			// Email appears in the SFS database.
-			wfDebugLog( 'GloopTweaks', "{$email} appears in StopForumSpam database" );
+			wfDebugLog( 'SubnauticaTweaks', "{$email} appears in StopForumSpam database" );
 			return true;
 		}
 		if ($username && $resultJson['username']['appears'] > 0 && $resultJson['username']['confidence'] > 10.0) {
 			// Username appears in the SFS database.
-			wfDebugLog( 'GloopTweaks', "{$username} appears in StopForumSpam database" );
+			wfDebugLog( 'SubnauticaTweaks', "{$username} appears in StopForumSpam database" );
 			return true;
 		}
 
@@ -54,7 +54,7 @@ class StopForumSpam {
 		$curl = curl_init();
 		$url = sprintf("%s?%s", 'https://api.stopforumspam.org/api', http_build_query($query));
 
-		wfDebugLog('GloopTweaks', "Making request to SFS API with URL: {$url}");
+		wfDebugLog('SubnauticaTweaks', "Making request to SFS API with URL: {$url}");
 
 		curl_setopt($curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
 		curl_setopt($curl, CURLOPT_URL, $url);
@@ -65,7 +65,7 @@ class StopForumSpam {
 		$result = curl_exec($curl);
 		curl_close($curl);
 
-		wfDebugLog( 'GloopTweaks', "SFS lookup for {$url}. Result: {$result}" );
+		wfDebugLog( 'SubnauticaTweaks', "SFS lookup for {$url}. Result: {$result}" );
 
 		return $result;
 	}

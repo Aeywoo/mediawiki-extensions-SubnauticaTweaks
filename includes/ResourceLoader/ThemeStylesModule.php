@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks\ResourceLoader;
+namespace MediaWiki\Extension\SubnauticaTweaks\ResourceLoader;
 
 use MediaWiki\MediaWikiServices;
 use ResourceLoaderContext;

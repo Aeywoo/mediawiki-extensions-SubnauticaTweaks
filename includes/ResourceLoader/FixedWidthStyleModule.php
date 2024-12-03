@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks\ResourceLoader;
+namespace MediaWiki\Extension\SubnauticaTweaks\ResourceLoader;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
@@ -15,11 +15,11 @@ class FixedWidthStyleModule extends ResourceLoaderSiteStylesModule {
 	 * @since 1.32 added the $context parameter
 	 */
 	protected function getContent( $titleText, ResourceLoaderContext $context ) {
-		global $wgGloopTweaksFamilyCentralDB;
+		global $wgSubnauticaTweaksFamilyCentralDB;
 		$services = MediaWikiServices::getInstance();
 
 		$title = $services->getTitleParser()->parseTitle( $titleText );
-		$store = $services->getRevisionStoreFactory()->getRevisionStore( $wgGloopTweaksFamilyCentralDB );
+		$store = $services->getRevisionStoreFactory()->getRevisionStore( $wgSubnauticaTweaksFamilyCentralDB );
 		$rev = $store->getRevisionByTitle( $title );
 
 		$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
@@ -41,10 +41,10 @@ class FixedWidthStyleModule extends ResourceLoaderSiteStylesModule {
 
 	// Override getDB() to use family main wiki rather than having a per-wiki MediaWiki:Vector-fixedwidth.css.
 	protected function getDB() {
-		global $wgGloopTweaksFamilyCentralDB;
+		global $wgSubnauticaTweaksFamilyCentralDB;
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lb = $lbFactory->getMainLB( $wgGloopTweaksFamilyCentralDB );
-		return $lb->getConnectionRef( DB_REPLICA, [], $wgGloopTweaksFamilyCentralDB );
+		$lb = $lbFactory->getMainLB( $wgSubnauticaTweaksFamilyCentralDB );
+		return $lb->getConnectionRef( DB_REPLICA, [], $wgSubnauticaTweaksFamilyCentralDB );
 	}
 
 	/**

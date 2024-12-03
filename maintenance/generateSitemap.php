@@ -29,7 +29,7 @@
  * @see http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
  */
 
-namespace MediaWiki\Extension\GloopTweaks\Maintenance;
+namespace MediaWiki\Extension\SubnauticaTweaks\Maintenance;
 
 use FilesystemIterator;
 use Maintenance;
@@ -175,14 +175,14 @@ class GenerateSitemap extends Maintenance {
 	 * Execute
 	 */
 	public function execute() {
-		global $wgCanonicalServer, $wgGloopTweaksSitemapsCompressed;
+		global $wgCanonicalServer, $wgSubnauticaTweaksSitemapsCompressed;
 		$this->setNamespacePriorities();
 		$this->url_limit = 50000;
 		$this->size_limit = ( 2 ** 20 ) * 10;
 
 		// Create temporary directory to use for generating the sitemaps before uploading.
 		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
-		$tmpDir = wfTempDir() . '/glooptweaks-' . $dbDomain;
+		$tmpDir = wfTempDir() . '/subnautica-' . $dbDomain;
 		if ( !wfMkdirParents( $tmpDir ) ) {
 			$this->fatalError( "Could not create temporary directory.\n", 1 );
 		}
@@ -190,7 +190,7 @@ class GenerateSitemap extends Maintenance {
 		$this->fspath = realpath( $tmpDir ) . DIRECTORY_SEPARATOR;
 		$this->urlpath = "$wgCanonicalServer/images/sitemaps/";
 		// WGL - Make sitemap compression configurable as Chinese search engines don't support compressed sitemaps.
-		$this->compress = $wgGloopTweaksSitemapsCompressed;
+		$this->compress = $wgSubnauticaTweaksSitemapsCompressed;
 		$this->skipRedirects = $this->hasOption( 'skip-redirects', 'yes' ) !== 'no';
 		$this->dbr = $this->getDB( DB_REPLICA );
 		$this->generateNamespaces();
@@ -587,9 +587,9 @@ class GenerateSitemap extends Maintenance {
 	 * Store the generated sitemaps on the FileBackend.
 	 */
 	private function storeSitemaps() {
-		global $wgGloopTweaksSitemapsFileBackend;
+		global $wgSubnauticaTweaksSitemapsFileBackend;
 		$services = MediaWikiServices::getInstance();
-		$backend = $services->getFileBackendGroup()->get( $wgGloopTweaksSitemapsFileBackend );
+		$backend = $services->getFileBackendGroup()->get( $wgSubnauticaTweaksSitemapsFileBackend );
 
 		$iter = new RecursiveIteratorIterator(
 			new RecursiveDirectoryIterator(

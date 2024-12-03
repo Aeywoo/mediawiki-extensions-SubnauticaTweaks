@@ -1,7 +1,7 @@
 <?php
 // Rasterize Echo notification icons for use in HTML emails as that is the only remaining use of rsvg-convert.
 
-namespace MediaWiki\Extension\GloopTweaks\Maintenance;
+namespace MediaWiki\Extension\SubnauticaTweaks\Maintenance;
 
 use Maintenance;
 use SvgHandler;

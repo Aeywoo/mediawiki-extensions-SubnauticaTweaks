@@ -12,9 +12,9 @@ require dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/WebStart.php';
 wfRobotsMain();
 
 function wfRobotsMain() {
-    global $wgGloopTweaksNetworkCentralDB, $wgCanonicalServer, $wgScriptPath, $wgArticlePath, $wgGloopTweaksNoRobots, $wgNamespaceRobotPolicies;
+    global $wgSubnauticaTweaksNetworkCentralDB, $wgCanonicalServer, $wgScriptPath, $wgArticlePath, $wgSubnauticaTweaksNoRobots, $wgNamespaceRobotPolicies;
 
-    if ( $wgGloopTweaksNoRobots ) {
+    if ( $wgSubnauticaTweaksNoRobots ) {
         header( 'Cache-Control: max-age=300, must-revalidate, s-maxage=300, revalidate-while-stale=300' );
         header( 'Content-Type: text/plain; charset=utf-8' );
         echo "User-agent: *\nDisallow: /";
@@ -24,7 +24,7 @@ function wfRobotsMain() {
     $services = MediaWikiServices::getInstance();
 
     $title = $services->getTitleParser()->parseTitle( 'MediaWiki:Robots.txt' );
-    $store = $services->getRevisionStoreFactory()->getRevisionStore( $wgGloopTweaksNetworkCentralDB );
+    $store = $services->getRevisionStoreFactory()->getRevisionStore( $wgSubnauticaTweaksNetworkCentralDB );
     $rev = $store->getRevisionByTitle( $title );
     $content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
     $lastModified = $rev ? $rev->getTimestamp() : null;

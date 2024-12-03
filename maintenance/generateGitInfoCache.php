@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks\Maintenance;
+namespace MediaWiki\Extension\SubnauticaTweaks\Maintenance;
 
 use GitInfo;
 use Maintenance;

@@ -1,13 +1,13 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks\StopForumSpam;
+namespace MediaWiki\Extension\SubnauticaTweaks\StopForumSpam;
 
 use MediaWiki\Auth\AbstractPreAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\MediaWikiServices;
 use StatusValue;
 
-class GloopPreAuthenticationProvider extends AbstractPreAuthenticationProvider {
+class SubnauticaPreAuthenticationProvider extends AbstractPreAuthenticationProvider {
 	/**
 	 * @param User $user
 	 * @param User $creator
@@ -39,7 +39,7 @@ class GloopPreAuthenticationProvider extends AbstractPreAuthenticationProvider {
 	 * @return StatusValue
 	 */
 	protected function testUser( $user, $creator, $autocreate ) {
-		global $wgGloopTweaksUseSFS, $wgRequest;
+		global $wgSubnauticaTweaksUseSFS, $wgRequest;
 
 		$userEmail = $user->getEmail();
 		$userName = $user->getName();
@@ -50,13 +50,13 @@ class GloopPreAuthenticationProvider extends AbstractPreAuthenticationProvider {
 		 * - Check the user's IP and email address remotely on the SFS database
 		 */
 
-		if ($wgGloopTweaksUseSFS && !$creator->isAllowed('bypassgloopspam')) {
+		if ($wgSubnauticaTweaksUseSFS && !$creator->isAllowed('bypasssubnauticaspam')) {
 			// creator does not have rights to bypass this spam check
 			$sfsBlacklisted = StopForumSpam::isBlacklisted( $userIP, $userEmail, null ); // for now, don't use usernamE
 
 			if ($sfsBlacklisted === true) {
-				wfDebugLog( 'GloopTweaks', "Blocked account creation from {$userIP} with email {$userEmail} and name {$userName}, as they are in StopForumSpam's database" );
-				return StatusValue::newFatal( 'weirdgloop-spam-block' );
+				wfDebugLog( 'SubnauticaTweaks', "Blocked account creation from {$userIP} with email {$userEmail} and name {$userName}, as they are in StopForumSpam's database" );
+				return StatusValue::newFatal( 'subnautica-spam-block' );
 			}
 		}
 

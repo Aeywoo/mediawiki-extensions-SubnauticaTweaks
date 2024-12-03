@@ -1,20 +1,20 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks;
+namespace MediaWiki\Extension\SubnauticaTweaks;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use TextContent;
 use Wikimedia\AtEase\AtEase;
 
-class GloopTweaksUtils {
+class SubnauticaTweaksUtils {
 	// Retrieve Special:Contact filter text from central DB.
 	private static function getContactFilterText() {
-		global $wgGloopTweaksNetworkCentralDB;
+		global $wgSubnauticaTweaksNetworkCentralDB;
 		$services = MediaWikiServices::getInstance();
 
-		$title = $services->getTitleParser()->parseTitle( 'MediaWiki:Weirdgloop-contact-filter' );
-		$store = $services->getRevisionStoreFactory()->getRevisionStore( $wgGloopTweaksNetworkCentralDB );
+		$title = $services->getTitleParser()->parseTitle( 'MediaWiki:Subnautica-contact-filter' );
+		$store = $services->getRevisionStoreFactory()->getRevisionStore( $wgSubnauticaTweaksNetworkCentralDB );
 		$rev = $store->getRevisionByTitle( $title );
 
 		$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
@@ -47,7 +47,7 @@ class GloopTweaksUtils {
 	}
 
 	/**
-	 * Implements spam filter for Special:Contact, checks against [[MediaWiki:Weirdgloop-contact-filter]] on metawiki. Regex per line and use '#' for comments.
+	 * Implements spam filter for Special:Contact, checks against [[MediaWiki:Subnautica-contact-filter]] on metawiki. Regex per line and use '#' for comments.
 	 *
 	 * @param string $text - The message text to check for spam.
 	 * @return bool
@@ -57,7 +57,7 @@ class GloopTweaksUtils {
 
 		$regexes = $cache->getWithSetCallback(
 			$cache->makeGlobalKey(
-				'GloopTweaks',
+				'SubnauticaTweaks',
 				'contact-filter-regexes'
 			),
 			300, // 5 minute cache time as this isn't a high frequency check.

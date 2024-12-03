@@ -1,25 +1,25 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks;
+namespace MediaWiki\Extension\SubnauticaTweaks;
 
 use MediaWiki\MediaWikiServices;
 use Parser;
 use Scribunto_LuaLibraryBase;
 
-class Scribunto_LuaGloopTweaksLibrary extends Scribunto_LuaLibraryBase {
+class Scribunto_LuaSubnauticaTweaksLibrary extends Scribunto_LuaLibraryBase {
 	public function register() {
 		$lib = [
 			'filepath' => [ $this, 'filepath' ],
 		];
 
 		return $this->getEngine()->registerInterface(
-			__DIR__ . '/mw.ext.GloopTweaks.lua', $lib, []
+			__DIR__ . '/mw.ext.SubnauticaTweaks.lua', $lib, []
 		);
 	}
 
 	// Based on CoreParserFunctions::filepath().
 	public function filepath( $name, $width ) {
-		$this->checkType( 'mw.ext.GloopTweaks.filepath', 1, $name, 'string' );
+		$this->checkType( 'mw.ext.SubnauticaTweaks.filepath', 1, $name, 'string' );
 		$this->incrementExpensiveFunctionCount();
 
 		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $name );

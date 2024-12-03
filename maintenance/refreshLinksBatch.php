@@ -20,10 +20,10 @@
  *
  */
 
-namespace MediaWiki\Extension\GloopTweaks\Maintenance;
+namespace MediaWiki\Extension\SubnauticaTweaks\Maintenance;
 
 use Maintenance;
-use MediaWiki\Extension\GloopTweaks\RefreshLinksBatchJob;
+use MediaWiki\Extension\SubnauticaTweaks\RefreshLinksBatchJob;
 use MediaWiki\MediaWikiServices;
 
 if ( getenv( 'MW_INSTALL_PATH' ) ) {

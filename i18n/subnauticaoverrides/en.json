@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jayden Bailey"
+		]
+	},
+	"subnautica-privacypage": "wg:privacy",
+	"subnautica-changecontentmodel-text": "This page allows you to change the content model of a page on this wiki. Please be aware that except under rare circumstances, this is almost never needed. Changing a page's content model may break its functionality. Please [[Special:Contact|contact]] a system administrator if you are unsure what you are doing.",
+	"subnautica-emailmessage": "Message:",
+	"subnautica-mobile-frontend-copyright": "Content on this site is licensed under $1; <a href=\"https://meta.subnautica.wiki/w/Project:Copyrights\">additional terms may apply</a>.\n\n",
+	"subnautica-contactpage-pagetext": "The form below can be used to contact the Subnautica Wiki, the operators of the wiki you are currently viewing. If you have an issue with the wiki itself, then it may make more sense to speak to an on-site editor or admin. '''If you're contacting us about a DMCA takedown request, use [[Special:Contact/dmca|this form]] instead.'''",
+	"subnautica-newusermessage-editor": "New user message",
+	"subnautica-revisionslider-help-dialog-slide1": "The revision slider helps you to navigate and compare revisions on the diff page. If you have any issues, let us know!"
+}

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Müller857"
+		]
+	},
+	"subnautica-privacypage": "wg:privacy",
+	"subnautica-changecontentmodel-text": "このページではこのWiki上のページのコンテンツモデルを変更することができます。これはごく稀な状況を除いて行う必要のない操作であり、ページのコンテンツモデルの変更はその機能を損なわせる恐れがある点にご注意ください。操作についてよく分からないことがあればシステム管理者に[[Special:Contact|お問い合わせ]]ください。",
+	"subnautica-emailmessage": "メッセージ:",
+	"subnautica-mobile-frontend-copyright": "このサイト上のコンテンツは$1でライセンスされています。<a href=\"https://meta.subnautica.wiki/w/Project:Copyrights\">追加の規約が適用される場合があります</a>。\n\n",
+	"subnautica-contactpage-pagetext": "以下のフォームは、現在ご閲覧のWikiを運営するSubnauticaへのお問い合わせにご利用いただけます。Wiki自体の問題はこのサイトの編集者または管理者にお伝えください。'''デジタルミレニアム著作権法に基づく削除要請については、[[Special:Contact/dmca|こちらのフォーム]]をご利用ください。'''",
+	"subnautica-newusermessage-editor": "新しいユーザーのメッセージ",
+	"subnautica-revisionslider-help-dialog-slide1": "版スライダーは、差分ページで版同士を比較・確認するためにご利用いただけます。何か問題があればぜひお知らせください。"
+}

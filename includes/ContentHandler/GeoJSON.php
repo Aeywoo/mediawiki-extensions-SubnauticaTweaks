@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks\ContentHandler;
+namespace MediaWiki\Extension\SubnauticaTweaks\ContentHandler;
 
 class GeoJSON extends \JsonContentHandler {
     public const CONTENT_MODEL_ID = 'GeoJSON';

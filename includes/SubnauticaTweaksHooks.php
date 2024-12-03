@@ -1,13 +1,13 @@
 <?php
 
-namespace MediaWiki\Extension\GloopTweaks;
+namespace MediaWiki\Extension\SubnauticaTweaks;
 
 use CdnCacheUpdate;
 use DeferredUpdates;
 use ErrorPageError;
 use Html;
-use MediaWiki\Extension\GloopTweaks\ResourceLoader\ThemeStylesModule;
-use MediaWiki\Extension\GloopTweaks\StopForumSpam\StopForumSpam;
+use MediaWiki\Extension\SubnauticaTweaks\ResourceLoader\ThemeStylesModule;
+use MediaWiki\Extension\SubnauticaTweaks\StopForumSpam\StopForumSpam;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Revision\RevisionRecord;
@@ -21,21 +21,21 @@ use WikiMap;
 use WikiPage;
 
 /**
- * Hooks for GloopTweaks extension
+ * Hooks for SubnauticaTweaks extension
  *
  * @file
  * @ingroup Extensions
  */
-class GloopTweaksHooks {
+class SubnauticaTweaksHooks {
 	/**
-	 * When core requests certain messages, change the key to a Weird Gloop version.
+	 * When core requests certain messages, change the key to a Subnautica version.
 	 *
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/MessageCacheFetchOverrides
 	 * @param string[] &$keys
 	 */
 	public static function onMessageCacheFetchOverrides( array &$keys ): void {
-		global $wgGloopTweaksEnableMessageOverrides;
-		if ( !$wgGloopTweaksEnableMessageOverrides ) return;
+		global $wgSubnauticaTweaksEnableMessageOverrides;
+		if ( !$wgSubnauticaTweaksEnableMessageOverrides ) return;
 
 		static $keysToOverride = [
 			'privacypage',
@@ -48,18 +48,18 @@ class GloopTweaksHooks {
 		];
 
 		foreach( $keysToOverride as $key ) {
-			$keys[$key] = "weirdgloop-$key";
+			$keys[$key] = "subnautica-$key";
 		}
 	}
 
-	// When [[MediaWiki:weirdgloop-contact-filter]] is edited, clear the contact-filter-regexes global cache key.
+	// When [[MediaWiki:subnautica-contact-filter]] is edited, clear the contact-filter-regexes global cache key.
 	public static function onPageSaveComplete( WikiPage $wikiPage, UserIdentity $user, string $summary, int $flags, RevisionRecord $revisionRecord, EditResult $editResult ) {
-		if ( $wikiPage->getTitle()->getPrefixedDBkey() === 'MediaWiki:Weirdgloop-contact-filter' ) {
+		if ( $wikiPage->getTitle()->getPrefixedDBkey() === 'MediaWiki:Subnautica-contact-filter' ) {
 			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 			$cache->delete(
 				$cache->makeGlobalKey(
-					'GloopTweaks',
+					'SubnauticaTweaks',
 					'contact-filter-regexes'
 				)
 			);
@@ -67,7 +67,7 @@ class GloopTweaksHooks {
 	}
 
 	/**
-	 * Override with Weird Gloop's site-specific copyright message.
+	 * Override with Weird Subnautica's site-specific copyright message.
 	 *
 	 * @param Title $title
 	 * @param string $type
@@ -75,11 +75,11 @@ class GloopTweaksHooks {
 	 * @param string &$link
 	 */
 	public static function onSkinCopyrightFooter( $title, $type, &$msg, &$link ) {
-		global $wgGloopTweaksEnableMessageOverrides;
+		global $wgSubnauticaTweaksEnableMessageOverrides;
 
-		if ($wgGloopTweaksEnableMessageOverrides) {
+		if ($wgSubnauticaTweaksEnableMessageOverrides) {
 			if ( $type !== 'history' ) {
-				$msg = 'weirdgloop-copyright';
+				$msg = 'subnautica-copyright';
 			}
 		}
 	}
@@ -92,27 +92,27 @@ class GloopTweaksHooks {
 	 * @param array &$footerLinks
 	 */
 	public static function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerLinks ) {
-		global $wgGloopTweaksAddFooterLinks;
+		global $wgSubnauticaTweaksAddFooterLinks;
 
-		if ( $wgGloopTweaksAddFooterLinks && $key === 'places' ) {
+		if ( $wgSubnauticaTweaksAddFooterLinks && $key === 'places' ) {
 			$footerLinks['tou'] = Html::element(
 				'a',
 				[
 					'href' => Skin::makeInternalOrExternalUrl(
-						$skin->msg( 'weirdgloop-tou-url' )->inContentLanguage()->text()
+						$skin->msg( 'subnautica-tou-url' )->inContentLanguage()->text()
 					),
 				],
-				$skin->msg( 'weirdgloop-tou' )->text()
+				$skin->msg( 'subnautica-tou' )->text()
 			);
 
 			$footerLinks['contact'] = Html::element(
 				'a',
 				[
 					'href' => Skin::makeInternalOrExternalUrl(
-						$skin->msg( 'weirdgloop-contact-url' )->inContentLanguage()->text()
+						$skin->msg( 'subnautica-contact-url' )->inContentLanguage()->text()
 					),
 				],
-				$skin->msg( 'weirdgloop-contact' )->text()
+				$skin->msg( 'subnautica-contact' )->text()
 			);
 		}
 	}
@@ -123,10 +123,10 @@ class GloopTweaksHooks {
 	 * @param string &$msg The message to over-ride
 	 */
 	public static function onGlobalBlockingBlockedIpMsg( &$msg ) {
-		global $wgGloopTweaksEnableMessageOverrides;
+		global $wgSubnauticaTweaksEnableMessageOverrides;
 
-		if ($wgGloopTweaksEnableMessageOverrides) {
-			$msg = 'weirdgloop-globalblocking-ipblocked';
+		if ($wgSubnauticaTweaksEnableMessageOverrides) {
+			$msg = 'subnautica-globalblocking-ipblocked';
 		}
 	}
 
@@ -136,10 +136,10 @@ class GloopTweaksHooks {
 	 * @param string &$msg The message to over-ride
 	 */
 	public static function onGlobalBlockingBlockedIpXffMsg( &$msg ) {
-		global $wgGloopTweaksEnableMessageOverrides;
+		global $wgSubnauticaTweaksEnableMessageOverrides;
 
-		if ($wgGloopTweaksEnableMessageOverrides) {
-			$msg = 'weirdgloop-globalblocking-ipblocked-xff';
+		if ($wgSubnauticaTweaksEnableMessageOverrides) {
+			$msg = 'subnautica-globalblocking-ipblocked-xff';
 		}
 	}
 
@@ -153,13 +153,13 @@ class GloopTweaksHooks {
 	 * @throws ErrorPageError
 	 */
 	public static function onUploadFormInitial( $tpl ) {
-		global $wgGloopTweaksRequireLicensesToUpload, $wgForceUIMsgAsContentMsg;
+		global $wgSubnauticaTweaksRequireLicensesToUpload, $wgForceUIMsgAsContentMsg;
 
-		if ($wgGloopTweaksRequireLicensesToUpload) {
+		if ($wgSubnauticaTweaksRequireLicensesToUpload) {
 			if ( !in_array( 'licenses', $wgForceUIMsgAsContentMsg )
 				&& wfMessage( 'licenses' )->inContentLanguage()->isDisabled()
 			) {
-				throw new ErrorPageError( 'uploaddisabled', 'weirdgloop-upload-nolicenses' );
+				throw new ErrorPageError( 'uploaddisabled', 'subnautica-upload-nolicenses' );
 			}
 		}
 	}
@@ -171,10 +171,10 @@ class GloopTweaksHooks {
 	 * @param array &$rights Current user rights.
 	 */
 	public static function onUserGetRightsRemove( $user, &$rights ) {
-		global $wgGloopTweaksSensitiveRights;
+		global $wgSubnauticaTweaksSensitiveRights;
 
 		// Avoid 2FA lookup if the user doesn't have any sensitive user rights.
-		if ( array_intersect( $wgGloopTweaksSensitiveRights, $rights ) === [] ) {
+		if ( array_intersect( $wgSubnauticaTweaksSensitiveRights, $rights ) === [] ) {
 			return;
 		}
 
@@ -182,28 +182,28 @@ class GloopTweaksHooks {
 		$oathUser = $userRepo->findByUser( $user );
 		if ( $oathUser->getModule() === null ) {
 			// No 2FA, remove sensitive user rights.
-			$rights = array_diff( $rights, $wgGloopTweaksSensitiveRights );
+			$rights = array_diff( $rights, $wgSubnauticaTweaksSensitiveRights );
 		}
 	}
 
 	/**
-	 * Protect Weird Gloop system messages from being edited by those that do not have
+	 * Protect Subnautica system messages from being edited by those that do not have
 	 * the "editinterfacesite" right. This is because system messages that are prefixed
-	 * with "weirdgloop" are probably there for a legal reason or to ensure consistency
+	 * with "subnautica" are probably there for a legal reason or to ensure consistency
 	 * across the site.
 	 *
 	 * @return bool
 	 */
 	public static function ongetUserPermissionsErrors( $title, $user, $action, &$result ) {
-		global $wgGloopTweaksProtectSiteInterface;
+		global $wgSubnauticaTweaksProtectSiteInterface;
 
-		if ( $wgGloopTweaksProtectSiteInterface
+		if ( $wgSubnauticaTweaksProtectSiteInterface
 			&& $action !== 'read'
 			&& $title->inNamespace( NS_MEDIAWIKI )
-			&& strpos( lcfirst( $title->getDBKey() ), 'weirdgloop-' ) === 0
+			&& strpos( lcfirst( $title->getDBKey() ), 'subnautica-' ) === 0
 			&& !$user->isAllowed( 'editinterfacesite' )
 		) {
-				$result = 'weirdgloop-siteinterface';
+				$result = 'subnautica-siteinterface';
 				return false;
 		}
 
@@ -214,25 +214,25 @@ class GloopTweaksHooks {
 	 * Implement theming and add structured data for the Google Sitelinks search box.
 	 */
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
-		global $wgGloopTweaksAnalyticsID, $wgCloudflareDomain, $wgGloopTweaksCSP, $wgGloopTweaksCSPAnons, $wgSitename;
-		global $wgGloopTweaksEnableTheming, $wgGloopTweaksEnableLoadingFixedWidth, $wgGloopTweaksEnableStructuredData, $wgArticlePath, $wgCanonicalServer;
+		global $wgSubnauticaTweaksAnalyticsID, $wgCloudflareDomain, $wgSubnauticaTweaksCSP, $wgSubnauticaTweaksCSPAnons, $wgSitename;
+		global $wgSubnauticaTweaksEnableTheming, $wgSubnauticaTweaksEnableLoadingFixedWidth, $wgSubnauticaTweaksEnableStructuredData, $wgArticlePath, $wgCanonicalServer;
 
 		// For letting user JS import from additional sources, like the Wikimedia projects, they have a longer CSP than anons.
-		if ( $wgGloopTweaksCSP !== '' ) {
+		if ( $wgSubnauticaTweaksCSP !== '' ) {
 			$user = RequestContext::getMain()->getUser();
 			$response = $out->getRequest()->response();
 
-			if ( $wgGloopTweaksCSPAnons === '' || ( $user && !$user->isAnon() ) ) {
-				$response->header( 'Content-Security-Policy: ' . $wgGloopTweaksCSP );
+			if ( $wgSubnauticaTweaksCSPAnons === '' || ( $user && !$user->isAnon() ) ) {
+				$response->header( 'Content-Security-Policy: ' . $wgSubnauticaTweaksCSP );
 			} else {
-				$response->header( 'Content-Security-Policy: ' . $wgGloopTweaksCSPAnons );
+				$response->header( 'Content-Security-Policy: ' . $wgSubnauticaTweaksCSPAnons );
 			}
 		}
 
 		// Inject Google Tag Manager.
-		if ( $wgGloopTweaksAnalyticsID ) {
-			$out->addInlineScript( "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','$wgGloopTweaksAnalyticsID')" );
-			$out->prependHTML( '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' . $wgGloopTweaksAnalyticsID . '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>' );
+		if ( $wgSubnauticaTweaksAnalyticsID ) {
+			$out->addInlineScript( "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','$wgSubnauticaTweaksAnalyticsID')" );
+			$out->prependHTML( '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' . $wgSubnauticaTweaksAnalyticsID . '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>' );
 		}
 
 		/*
@@ -247,7 +247,7 @@ class GloopTweaksHooks {
 		// Avoid duplicate processing if this will be performed instead by our Cloudflare worker.
 		if ( !$workerProcessed ) {
 			/* Theming */
-			if ( $wgGloopTweaksEnableTheming ) {
+			if ( $wgSubnauticaTweaksEnableTheming ) {
 				$legacyDarkmode = isset( $_COOKIE['darkmode'] ) && $_COOKIE['darkmode'] === 'true';
 				$theme = $_COOKIE['theme'] ?? ( $legacyDarkmode ? 'dark' : 'light' );
 
@@ -266,7 +266,7 @@ class GloopTweaksHooks {
 			}
 
 			/* Fixed width mode */
-			if ( $wgGloopTweaksEnableLoadingFixedWidth && isset( $_COOKIE['readermode'] ) && $_COOKIE['readermode'] === 'true' ) {
+			if ( $wgSubnauticaTweaksEnableLoadingFixedWidth && isset( $_COOKIE['readermode'] ) && $_COOKIE['readermode'] === 'true' ) {
 				$out->addBodyClasses( [ 'wgl-fixedWidth' ] );
 				$out->addModuleStyles( [ 'wg.fixedwidth' ] );
 			}
@@ -279,7 +279,7 @@ class GloopTweaksHooks {
 			$out->addMeta( 'og:type', 'website' );
 
 			/* Structured data for Google etc */
-			if ( $wgGloopTweaksEnableStructuredData ) {
+			if ( $wgSubnauticaTweaksEnableStructuredData ) {
 				$structuredData = [
 					'@context'        => 'http://schema.org',
 					'@type'           => 'WebSite',
@@ -312,20 +312,20 @@ class GloopTweaksHooks {
 	 * Hook provided by ContactPage extension.
 	 */
 	public static function onContactPage( &$to, &$replyTo, &$subject, &$text ) {
-		global $wgGloopTweaksEnableContactFilter, $wgGloopTweaksSendDetailsWithContactPage, $wgGloopTweaksUseSFS, $wgDBname, $wgRequest, $wgOut, $wgServer;
+		global $wgSubnauticaTweaksEnableContactFilter, $wgSubnauticaTweaksSendDetailsWithContactPage, $wgSubnauticaTweaksUseSFS, $wgDBname, $wgRequest, $wgOut, $wgServer;
 
 		$user = $wgOut->getUser();
 		$userIP = $wgRequest->getIP();
 
-		// Spam filter for Special:Contact, checks against [[MediaWiki:weirdgloop-contact-filter]] on metawiki. Regex per line and use '#' for comments.
-		if ( $wgGloopTweaksEnableContactFilter && !GloopTweaksUtils::checkContactFilter( $subject . "\n" . $text ) ) {
-			wfDebugLog( 'GloopTweaks', "Blocked contact form from {$userIP} as their message matches regex in our contact filter" );
+		// Spam filter for Special:Contact, checks against [[MediaWiki:subnautica-contact-filter]] on metawiki. Regex per line and use '#' for comments.
+		if ( $wgSubnauticaTweaksEnableContactFilter && !SubnauticaTweaksUtils::checkContactFilter( $subject . "\n" . $text ) ) {
+			wfDebugLog( 'SubnauticaTweaks', "Blocked contact form from {$userIP} as their message matches regex in our contact filter" );
 			return false;
 		}
 
 		// StopForumSpam check: only check users who are not registered already
-		if ( $wgGloopTweaksUseSFS && $user->isAnon() && StopForumSpam::isBlacklisted( $userIP ) ) {
-			wfDebugLog( 'GloopTweaks', "Blocked contact form from {$userIP} as they are in StopForumSpam's database" );
+		if ( $wgSubnauticaTweaksUseSFS && $user->isAnon() && StopForumSpam::isBlacklisted( $userIP ) ) {
+			wfDebugLog( 'SubnauticaTweaks', "Blocked contact form from {$userIP} as they are in StopForumSpam's database" );
 			return false;
 		}
 
@@ -333,11 +333,11 @@ class GloopTweaksHooks {
 		// Bots appear to rewrite <input> tags with type='email' to type='text'
 		// And then the form lets them submit without any additional verification.
 		// if ( !filter_var( $replyTo, FILTER_VALIDATE_EMAIL ) ) {
-		// 	wfDebugLog( 'GloopTweaks', "Blocked contact form from {$userIP} as the Reply-To address is not an email address" );
+		// 	wfDebugLog( 'SubnauticaTweaks', "Blocked contact form from {$userIP} as the Reply-To address is not an email address" );
 		// 	return false;
 		// }
 
-		if ($wgGloopTweaksSendDetailsWithContactPage) {
+		if ($wgSubnauticaTweaksSendDetailsWithContactPage) {
 			$text .= "\n\n---\n\n"; // original message
 			$text .= $wgServer . ' (' . $wgDBname . ") [" . gethostname() . "]\n"; // server & database name
 			$text .= $userIP . ' - ' . ( $_SERVER['HTTP_USER_AGENT'] ?? null ) . "\n"; // IP & user agent
@@ -391,10 +391,10 @@ class GloopTweaksHooks {
 	* Add purging for global robots.txt, well-known URLs, and hashless images.
 	*/
 	public static function onTitleSquidURLs( Title $title, array &$urls ) {
-		global $wgCanonicalServer, $wgGloopTweaksNetworkCentralDB, $wgDBname;
+		global $wgCanonicalServer, $wgSubnauticaTweaksNetworkCentralDB, $wgDBname;
 		$dbkey = $title->getPrefixedDBKey();
 		// MediaWiki:Robots.txt on metawiki is global.
-		if ( $wgDBname === $wgGloopTweaksNetworkCentralDB && $dbkey === 'MediaWiki:Robots.txt' ) {
+		if ( $wgDBname === $wgSubnauticaTweaksNetworkCentralDB && $dbkey === 'MediaWiki:Robots.txt' ) {
 			// Purge each wiki's /robots.txt route.
 			foreach( WikiMap::getCanonicalServerInfoForAllWikis() as $serverInfo ) {
 				$urls[] = $serverInfo['url'] . '/robots.txt';
@@ -415,8 +415,8 @@ class GloopTweaksHooks {
 	* Register resource modules for themes.
 	*/
 	public static function onResourceLoaderRegisterModules( ResourceLoader $resourceLoader ) {
-		global $wgGloopTweaksThemes;
-		foreach ( $wgGloopTweaksThemes as $theme ) {
+		global $wgSubnauticaTweaksThemes;
+		foreach ( $wgSubnauticaTweaksThemes as $theme ) {
 			$resourceLoader->register( "wgl.theme.$theme", [
 				'class' => ThemeStylesModule::class,
 				'theme' => $theme,
@@ -440,7 +440,7 @@ class GloopTweaksHooks {
 	 */
 	public static function onScribuntoExternalLibraries( $engine, array &$extraLibraries ) {
 		if ( $engine == 'lua' ) {
-			$extraLibraries['mw.ext.GloopTweaks'] = Scribunto_LuaGloopTweaksLibrary::class;
+			$extraLibraries['mw.ext.SubnauticaTweaks'] = Scribunto_LuaSubnauticaTweaksLibrary::class;
 		}
 	}
 }

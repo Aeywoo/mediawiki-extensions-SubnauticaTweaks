@@ -1,32 +1,33 @@
 {
-	"name": "GloopTweaks",
+	"name": "SubnauticaTweaks",
 	"version": "1.1.0",
 	"author": [
 		"[https://github.com/jayktaylor Jayden Bailey]",
 		"TehKittyCat",
+		"Aeywoo",
 		"..."
 	],
-	"url": "https://weirdgloop.org",
-	"descriptionmsg": "glooptweaks-desc",
+	"url": "https://meta.subnautica.wiki",
+	"descriptionmsg": "subnauticatweaks-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"MessagesDirs": {
 		"Analytics": [
 			"i18n/analytics"
 		],
-		"WeirdGloopContactMessages": [
+		"SubnauticaContactMessages": [
 			"i18n/contact"
 		],
-		"WeirdGloopMessages": [
-			"i18n/weirdgloop"
+		"SubnauticaMessages": [
+			"i18n/subnautica"
 		],
-		"WeirdGloopOverrides": [
-			"i18n/weirdgloopoverrides"
+		"SubnauticaOverrides": [
+			"i18n/Subnauticaoverrides"
 		],
-		"WeirdGloopProjectNames": [
+		"SubnauticaProjectNames": [
 			"i18n/projectnames"
 		],
-		"WeirdGloopTemporaryMessages": [
+		"SubnauticaTemporaryMessages": [
 			"i18n/temporary"
 		]
 	},
@@ -34,49 +35,49 @@
 		"MediaWiki": ">= 1.41.0"
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\GloopTweaks\\": "includes/"
+		"MediaWiki\\Extension\\SubnauticaTweaks\\": "includes/"
 	},
 	"ContentHandlers": {
-		"GeoJSON": "MediaWiki\\Extension\\GloopTweaks\\ContentHandler\\GeoJSON",
-		"interactivemap": "MediaWiki\\Extension\\GloopTweaks\\ContentHandler\\InteractiveMap"
+		"GeoJSON": "MediaWiki\\Extension\\SubnauticaTweaks\\ContentHandler\\GeoJSON",
+		"interactivemap": "MediaWiki\\Extension\\SubnauticaTweaks\\ContentHandler\\InteractiveMap"
 	},
 	"ResourceModules": {
 		"wg.fixedwidth": {
-			"class": "MediaWiki\\Extension\\GloopTweaks\\ResourceLoader\\FixedWidthStyleModule"
+			"class": "MediaWiki\\Extension\\SubnauticaTweaks\\ResourceLoader\\FixedWidthStyleModule"
 		}
 	},
 	"AuthManagerAutoConfig": {
 		"preauth": {
-			"MediaWiki\\Extension\\GloopTweaks\\StopForumSpam\\GloopPreAuthenticationProvider": {
-				"class": "MediaWiki\\Extension\\GloopTweaks\\StopForumSpam\\GloopPreAuthenticationProvider",
+			"MediaWiki\\Extension\\SubnauticaTweaks\\StopForumSpam\\SubnauticaPreAuthenticationProvider": {
+				"class": "MediaWiki\\Extension\\SubnauticaTweaks\\StopForumSpam\\SubnauticaPreAuthenticationProvider",
 				"sort": 5
 			}
 		}
 	},
 	"Hooks": {
-		"BeforePageDisplay": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onBeforePageDisplay",
-		"ContactForm": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onContactPage",
-		"GetLocalURL::Internal": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onGetLocalURLInternal",
-		"GlobalBlockingBlockedIpMsg": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onGlobalBlockingBlockedIpMsg",
-		"GlobalBlockingBlockedIpXffMsg": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onGlobalBlockingBlockedIpXffMsg",
-		"LocalFilePurgeThumbnails": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onLocalFilePurgeThumbnails",
-		"MessageCacheFetchOverrides": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onMessageCacheFetchOverrides",
-		"OpenSearchUrls": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onOpenSearchUrls",
-		"PageSaveComplete": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onPageSaveComplete",
-		"ResourceLoaderRegisterModules": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onResourceLoaderRegisterModules",
-		"ScribuntoExternalLibraries": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onScribuntoExternalLibraries",
-		"SkinAddFooterLinks": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onSkinAddFooterLinks",
-		"SkinCopyrightFooter": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onSkinCopyrightFooter",
-		"TestCanonicalRedirect": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onTestCanonicalRedirect",
-		"TitleSquidURLs": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onTitleSquidURLs",
-		"UploadForm:initial": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onUploadFormInitial",
-		"UserGetRightsRemove": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::onUserGetRightsRemove",
-		"getUserPermissionsErrors": "MediaWiki\\Extension\\GloopTweaks\\GloopTweaksHooks::ongetUserPermissionsErrors"
+		"BeforePageDisplay": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onBeforePageDisplay",
+		"ContactForm": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onContactPage",
+		"GetLocalURL::Internal": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onGetLocalURLInternal",
+		"GlobalBlockingBlockedIpMsg": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onGlobalBlockingBlockedIpMsg",
+		"GlobalBlockingBlockedIpXffMsg": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onGlobalBlockingBlockedIpXffMsg",
+		"LocalFilePurgeThumbnails": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onLocalFilePurgeThumbnails",
+		"MessageCacheFetchOverrides": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onMessageCacheFetchOverrides",
+		"OpenSearchUrls": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onOpenSearchUrls",
+		"PageSaveComplete": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onPageSaveComplete",
+		"ResourceLoaderRegisterModules": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onResourceLoaderRegisterModules",
+		"ScribuntoExternalLibraries": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onScribuntoExternalLibraries",
+		"SkinAddFooterLinks": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onSkinAddFooterLinks",
+		"SkinCopyrightFooter": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onSkinCopyrightFooter",
+		"TestCanonicalRedirect": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onTestCanonicalRedirect",
+		"TitleSquidURLs": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onTitleSquidURLs",
+		"UploadForm:initial": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onUploadFormInitial",
+		"UserGetRightsRemove": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::onUserGetRightsRemove",
+		"getUserPermissionsErrors": "MediaWiki\\Extension\\SubnauticaTweaks\\SubnauticaTweaksHooks::ongetUserPermissionsErrors"
 	},
 	"JobClasses": {
-		"refreshLinksBatch": "MediaWiki\\Extension\\GloopTweaks\\RefreshLinksBatchJob"
+		"refreshLinksBatch": "MediaWiki\\Extension\\SubnauticaTweaks\\RefreshLinksBatchJob"
 	},
-	"config_prefix": "wgGloopTweaks",
+	"config_prefix": "wgSubnauticaTweaks",
 	"config": {
 		"AddFooterLinks": {
 			"value": true
@@ -90,7 +91,7 @@
 		},
 		"NetworkCentralDB": {
 			"value": "metawiki",
-			"description": "The database name of the Weird Gloop central wiki, which is metawiki, but can be changed."
+			"description": "The database name of the Meta central wiki, which is metawiki, but can be changed."
 		},
 		"CFToken": {
 			"value": ""
@@ -155,7 +156,7 @@
 	},
 	"AvailableRights": [
 		"editinterfacesite",
-		"bypassgloopspam"
+		"bypasssubnauticaspam"
 	],
 	"manifest_version": 2
 }
